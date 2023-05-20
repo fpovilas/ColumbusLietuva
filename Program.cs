@@ -16,7 +16,7 @@
                         arPasirinko = true;
                         break;
                     case "2":
-                        //Uzduotis2();
+                        Uzduotis2();
                         arPasirinko = true;
                         break;
                     case "3":
@@ -33,6 +33,19 @@
                         break;
                 }
             } while(!arPasirinko);
+        }
+
+        private static void Uzduotis2()
+        {
+            Random random = new Random();
+            int[] skaiciai = new int[100];
+
+            for(int i=0; i<100; i++)
+            {
+                skaiciai[i] = random.Next(1, 101);
+            }
+
+            //Algoritmas, kuris suranda skaičius
         }
 
         private static void Uzduotis1()
