@@ -25,7 +25,7 @@
                         arPasirinko = true;
                         break;
                     case "4":
-                        //p.Uzduotis4();
+                        p.Uzduotis4();
                         arPasirinko = true;
                         break;
                     default:
@@ -34,6 +34,47 @@
                         break;
                 }
             } while(!arPasirinko);
+        }
+
+        private void Uzduotis4()
+        {
+            string sakinys = "Programuotojo ar tiesiog bet kokio IT specialisto profesija taps vis labiau įprasta.";
+            string sakinysMazosiomis = sakinys.ToLower();
+
+            char[] balsiai = {
+                'a', 'ą', 'e', 'ę', 'ė', 'i',
+                'į', 'y', 'o', 'u', 'ų', 'ū'};
+            char[] priebalsiai = {
+                'b', 'c', 'č', 'd', 'f', 'g', 'h',
+                'j', 'k', 'l', 'm', 'n', 'p', 'r',
+                's', 'š', 't', 'v', 'z', 'ž'};
+
+            int balsiuSkaicius = 0;
+            int priebalsiuSkaicius = 0;
+
+            bool arRadauBalsi = false;
+
+            foreach(char raide in sakinysMazosiomis)
+            {
+                if (raide == ' ' || raide == '.') { continue; }
+                else
+                {
+                    foreach (char balsis in balsiai)
+                    {
+                        if (raide == balsis) { balsiuSkaicius++; arRadauBalsi = true; break; }
+                    }
+
+                    if (!arRadauBalsi)
+                    {
+                        foreach (char priebalsis in priebalsiai)
+                        {
+                            if (raide == priebalsis) { priebalsiuSkaicius++; break; }
+                        }
+                    } else { arRadauBalsi = false; }
+                }
+            }
+
+            Console.WriteLine($"Sakinyje: {sakinys} yra {balsiuSkaicius} balsių ir {priebalsiuSkaicius} priebalsių");
         }
 
         private void Uzduotis3()
