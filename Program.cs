@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        static Program p = new Program();
+        private static Program p = new Program();
         static void Main(string[] args)
         {
             bool arPasirinko = false;
@@ -21,7 +21,7 @@
                         arPasirinko = true;
                         break;
                     case "3":
-                        //p.Uzduotis3();
+                        p.Uzduotis3();
                         arPasirinko = true;
                         break;
                     case "4":
@@ -36,6 +36,45 @@
             } while(!arPasirinko);
         }
 
+        private void Uzduotis3()
+        {
+            int[] skaiciai = p.GeneruotiSkaicius(100);
+
+            List<int> dubliai = new List<int>();
+
+            Console.Write("Sugeneruotas skaičių masyvas: { ");
+
+            for (int i = 0; i < skaiciai.Length - 1; i++)
+            {
+                if (i < skaiciai.Length - 2) { Console.Write($"{skaiciai[i]}, "); }
+                else { Console.Write($"{skaiciai[i]} "); }
+
+                for (int j = i + 1; j < skaiciai.Length - 1; j++)
+                {
+                    if (skaiciai[i] == skaiciai[j])
+                    {
+                        if (!p.IeskotiVienodo(dubliai, skaiciai[i]))
+                        {
+                            dubliai.Add(skaiciai[i]);
+                            break;
+                        }
+                        else { break; }
+                        
+                    }
+                }
+            }
+
+            Console.WriteLine("}");
+            Console.Write("\nPasikartojačių skaičių masyvas: { ");
+            for (int i = 0; i < dubliai.Count; i++)
+            {
+                if (i < dubliai.Count - 1) { Console.Write($"{dubliai[i]}, "); }
+                else { Console.Write($"{dubliai[i]} "); }
+            }
+            Console.WriteLine("}");
+
+        }
+
         private void Uzduotis2()
         {
             int[] skaiciai = p.GeneruotiSkaicius(100);
@@ -43,8 +82,13 @@
             int maziausiasSkaicius = int.MaxValue;
             int didziausiasSkaicius = int.MinValue;
 
-            for(int i = 0; i < skaiciai.Length - 1; i++)
+            Console.Write("Sugeneruotas skaičių masyvas: { ");
+
+            for (int i = 0; i < skaiciai.Length - 1; i++)
             {
+                if (i < skaiciai.Length - 2) { Console.Write($"{skaiciai[i]}, "); }
+                else { Console.Write($"{skaiciai[i]} "); }
+
                 for (int j = 0; j < skaiciai.Length - 1; j++)
                 {
                     if (skaiciai[j] < skaiciai[i] && maziausiasSkaicius > skaiciai[j]) { maziausiasSkaicius = skaiciai[j]; }
@@ -52,12 +96,8 @@
                 }
             }
 
-            Console.WriteLine($"Per for maziausiais: {maziausiasSkaicius} didziausiais: {didziausiasSkaicius}");
-            Console.WriteLine($"Per built-in maziausiais: {skaiciai.Min()} didziausiais: {skaiciai.Max()}");
-
-
-
-            //Algoritmas, kuris suranda skaičius
+            Console.WriteLine("}");
+            Console.WriteLine($"\nDidžiausias skaičius: {didziausiasSkaicius}. Mažiausias skaičius: {maziausiasSkaicius}.");
         }
 
         private void Uzduotis1()
@@ -88,6 +128,21 @@
             }
 
             return skaicius;
+        }
+
+        private bool IeskotiVienodo(List<int> masyvas, int ieskomasSkaicius)
+        {
+            bool atsakymas = false;
+            if (masyvas == null) { atsakymas = false; }
+            else
+            {
+                foreach (int i in masyvas)
+                {
+                    if (i == ieskomasSkaicius) { atsakymas = true; }
+                    else { atsakymas = false; }
+                }
+            }
+            return atsakymas;
         }
     }
 }
