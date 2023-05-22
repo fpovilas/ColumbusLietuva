@@ -29,7 +29,9 @@ namespace ColumbusLietuva
                         arPasirinko = true;
                         break;
                     case "3":
-                        p.Uzduotis3();
+                        //p.Uzduotis3();
+                        Uzduotis3 uzduotis3 = new Uzduotis3();
+                        uzduotis3.Vykdyk();
                         arPasirinko = true;
                         break;
                     case "4":
@@ -91,45 +93,6 @@ namespace ColumbusLietuva
                 $"priebals{((priebalsiuSkaicius % 10 > 0) ? ((priebalsiuSkaicius % 10 > 1) ? "ės" : "ė") : "ių")}");
         }
 
-        private void Uzduotis3()
-        {
-            int[] skaiciai = p.GeneruotiSkaicius(100);
-
-            List<int> dubliai = new List<int>();
-
-            Console.Write("Sugeneruotas skaičių masyvas: { ");
-
-            for (int i = 0; i < skaiciai.Length - 1; i++)
-            {
-                if (i < skaiciai.Length - 2) { Console.Write($"{skaiciai[i]}, "); }
-                else { Console.Write($"{skaiciai[i]} "); }
-
-                for (int j = i + 1; j < skaiciai.Length - 1; j++)
-                {
-                    if (skaiciai[i] == skaiciai[j])
-                    {
-                        if (!p.IeskotiVienodo(dubliai, skaiciai[i]))
-                        {
-                            dubliai.Add(skaiciai[i]);
-                            break;
-                        }
-                        else { break; }
-                        
-                    }
-                }
-            }
-
-            Console.WriteLine("}");
-            Console.Write("\nPasikartojačių skaičių masyvas: { ");
-            for (int i = 0; i < dubliai.Count; i++)
-            {
-                if (i < dubliai.Count - 1) { Console.Write($"{dubliai[i]}, "); }
-                else { Console.Write($"{dubliai[i]} "); }
-            }
-            Console.WriteLine("}");
-
-        }
-
         private void SpausdintiMenu()
         {
             Console.WriteLine("1.");
@@ -137,21 +100,6 @@ namespace ColumbusLietuva
             Console.WriteLine("3.");
             Console.WriteLine("4.");
             Console.Write("Jūsų pasirinkimas: ");
-        }
-
-        private bool IeskotiVienodo(List<int> masyvas, int ieskomasSkaicius)
-        {
-            bool atsakymas = false;
-            if (masyvas == null) { atsakymas = false; }
-            else
-            {
-                foreach (int i in masyvas)
-                {
-                    if (i == ieskomasSkaicius) { atsakymas = true; }
-                    else { atsakymas = false; }
-                }
-            }
-            return atsakymas;
         }
     }
 }
