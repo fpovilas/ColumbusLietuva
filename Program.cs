@@ -48,10 +48,11 @@ namespace ColumbusLietuva
 
         private void SpausdintiMenu()
         {
-            Console.WriteLine("1.");
-            Console.WriteLine("2.");
-            Console.WriteLine("3.");
-            Console.WriteLine("4.");
+            Console.WriteLine("Pasirinkite vieną iš užduočių:");
+            Console.WriteLine("1. Algoritmas, kuris įvestą tekstinę reikšmę pateikia atbuline tvarką.");
+            Console.WriteLine("2. Algoritmas, kuris skaičių masyve suranda mažiausią ir didžiausią skaičių.");
+            Console.WriteLine("3. Algoritmas, kuris skaičių masyve suranda besidubliuojančius skaičius.");
+            Console.WriteLine("4. Algoritmas, kuris suskaičiuoja balsių ir priebalsių skaičių tekste \x1b[1m“Programuotojo ar tiesiog bet kokio IT specialisto profesija taps vis labiau įprasta.“\x1b[0m");
             Console.Write("Jūsų pasirinkimas: ");
         }
     }

@@ -10,7 +10,7 @@ namespace ColumbusLietuva
     {
         internal void Vykdyk()
         {
-            string sakinys = "Programuotojo ar tiesiog bet kokio IT specialisto profesija taps vis labiau įprasta.";
+            string sakinys = "„Programuotojo ar tiesiog bet kokio IT specialisto profesija taps vis labiau įprasta.“";
 
             char[] balsiai = {
                 'a', 'A', 'ą', 'Ą', 'e', 'E', 'ę', 'Ę',

@@ -47,19 +47,19 @@ namespace ColumbusLietuva
 
         }
 
-        private bool IeskotiVienodo(List<int> masyvas, int ieskomasSkaicius)
+        private bool IeskotiVienodo(List<int> skaiciuMasyvas, int ieskomasSkaicius)
         {
-            bool atsakymas = false;
-            if (masyvas == null) { atsakymas = false; }
+            bool arVienodas = false;
+            if (skaiciuMasyvas == null) { arVienodas = false; }
             else
             {
-                foreach (int i in masyvas)
+                foreach (int i in skaiciuMasyvas)
                 {
-                    if (i == ieskomasSkaicius) { atsakymas = true; }
-                    else { atsakymas = false; }
+                    if (i == ieskomasSkaicius) { arVienodas = true; }
+                    else { arVienodas = false; }
                 }
             }
-            return atsakymas;
+            return arVienodas;
         }
     }
 }

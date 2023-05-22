@@ -10,7 +10,7 @@ namespace ColumbusLietuva
     {
         internal void Vykdyk()
         {
-            Console.WriteLine("Įveskite žodį: ");
+            Console.WriteLine("Įveskite žodį/tekstą: ");
             string zodis = Console.ReadLine();
 
             for (int i = zodis.Length - 1; i >= 0; i--) { Console.Write(zodis[i]); }
