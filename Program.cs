@@ -1,11 +1,17 @@
-﻿namespace ColumbusLietuva
+﻿using System.Text;
+
+namespace ColumbusLietuva
 {
     internal class Program
     {
         private static Program p = new Program();
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
+
             bool arPasirinko = false;
+
             do
             {
                 p.SpausdintiMenu();
@@ -13,11 +19,13 @@
                 switch (pasirinkimas)
                 {
                     case "1":
-                        p.Uzduotis1();
+                        Uzduotis1 uzduotis1 = new Uzduotis1();
+                        uzduotis1.Vykdyk();
                         arPasirinko = true;
                         break;
                     case "2":
-                        p.Uzduotis2();
+                        Uzduotis2 uzduotis2 = new Uzduotis2();
+                        uzduotis2.Vykdyk();
                         arPasirinko = true;
                         break;
                     case "3":
@@ -39,22 +47,24 @@
         private void Uzduotis4()
         {
             string sakinys = "Programuotojo ar tiesiog bet kokio IT specialisto profesija taps vis labiau įprasta.";
-            string sakinysMazosiomis = sakinys.ToLower();
 
             char[] balsiai = {
-                'a', 'ą', 'e', 'ę', 'ė', 'i',
-                'į', 'y', 'o', 'u', 'ų', 'ū'};
+                'a', 'A', 'ą', 'Ą', 'e', 'E', 'ę', 'Ę',
+                'ė', 'Ė', 'i', 'I', 'į', 'Į', 'y', 'Y',
+                'o', 'O', 'u', 'U', 'ų', 'Ų', 'Ū', 'ū'};
             char[] priebalsiai = {
-                'b', 'c', 'č', 'd', 'f', 'g', 'h',
-                'j', 'k', 'l', 'm', 'n', 'p', 'r',
-                's', 'š', 't', 'v', 'z', 'ž'};
+                'B', 'b', 'C', 'c', 'Č', 'č', 'D', 'd',
+                'F', 'f', 'G', 'g', 'H', 'h', 'J', 'j',
+                'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n',
+                'P', 'p', 'R', 'r', 'S', 's', 'Š', 'š',
+                'T', 't', 'V', 'v', 'Z', 'z', 'Ž', 'ž'};
 
             int balsiuSkaicius = 0;
             int priebalsiuSkaicius = 0;
 
             bool arRadauBalsi = false;
 
-            foreach(char raide in sakinysMazosiomis)
+            foreach(char raide in sakinys)
             {
                 if (raide == ' ' || raide == '.') { continue; }
                 else
@@ -74,7 +84,11 @@
                 }
             }
 
-            Console.WriteLine($"Sakinyje: {sakinys} yra {balsiuSkaicius} balsių ir {priebalsiuSkaicius} priebalsių");
+            Console.WriteLine(
+                $"Sakinyje: {sakinys} yra {balsiuSkaicius} " +
+                $"bals{((balsiuSkaicius % 10 > 0) ? ( (balsiuSkaicius % 10 > 1) ? "ės" : "ė" ) : "ių" ) }" +
+                $" ir {priebalsiuSkaicius} " +
+                $"priebals{((priebalsiuSkaicius % 10 > 0) ? ((priebalsiuSkaicius % 10 > 1) ? "ės" : "ė") : "ių")}");
         }
 
         private void Uzduotis3()
@@ -116,39 +130,6 @@
 
         }
 
-        private void Uzduotis2()
-        {
-            int[] skaiciai = p.GeneruotiSkaicius(100);
-
-            int maziausiasSkaicius = int.MaxValue;
-            int didziausiasSkaicius = int.MinValue;
-
-            Console.Write("Sugeneruotas skaičių masyvas: { ");
-
-            for (int i = 0; i < skaiciai.Length - 1; i++)
-            {
-                if (i < skaiciai.Length - 2) { Console.Write($"{skaiciai[i]}, "); }
-                else { Console.Write($"{skaiciai[i]} "); }
-
-                for (int j = 0; j < skaiciai.Length - 1; j++)
-                {
-                    if (skaiciai[j] < skaiciai[i] && maziausiasSkaicius > skaiciai[j]) { maziausiasSkaicius = skaiciai[j]; }
-                    if (skaiciai[j] > skaiciai[i] && didziausiasSkaicius < skaiciai[j]) { didziausiasSkaicius = skaiciai[j]; }
-                }
-            }
-
-            Console.WriteLine("}");
-            Console.WriteLine($"\nDidžiausias skaičius: {didziausiasSkaicius}. Mažiausias skaičius: {maziausiasSkaicius}.");
-        }
-
-        private void Uzduotis1()
-        {
-            Console.WriteLine("Įveskite žodį: ");
-            string zodis = Console.ReadLine();
-
-            for(int i = zodis.Length - 1; i >= 0; i--) { Console.Write(zodis[i]); }
-        }
-
         private void SpausdintiMenu()
         {
             Console.WriteLine("1.");
@@ -156,19 +137,6 @@
             Console.WriteLine("3.");
             Console.WriteLine("4.");
             Console.Write("Jūsų pasirinkimas: ");
-        }
-
-        private int[] GeneruotiSkaicius(int kiekSugeneruotiSkaiciu)
-        {
-            Random random = new Random();
-            int[] skaicius = new int[kiekSugeneruotiSkaiciu];
-
-            for(int i=0; i<kiekSugeneruotiSkaiciu; i++)
-            {
-                skaicius[i] = random.Next(0, kiekSugeneruotiSkaiciu + 1);
-            }
-
-            return skaicius;
         }
 
         private bool IeskotiVienodo(List<int> masyvas, int ieskomasSkaicius)
